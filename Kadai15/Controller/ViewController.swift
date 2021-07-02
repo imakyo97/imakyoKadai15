@@ -37,26 +37,20 @@ class ViewController: UIViewController {
                                forCellReuseIdentifier: ItemTableViewCell.identifier)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        itemTableView.reloadData()
-    }
-
     @IBAction private func tappedAdd(_ sender: Any) {
-        performSegue(withIdentifier: "Add", sender: nil)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Add" {
-            // swiftlint:disable:next force_cast
-            let nav = segue.destination as! UINavigationController
-            // swiftlint:disable:next force_cast
-            let inputViewController = nav.topViewController as! InputViewController
-            inputViewController.saveText = { [weak self] in
-                self?.items.append(
-                    Item(name: $0, isChecked: false)
-                ) }
-        }
+        present(
+            UINavigationController(
+                rootViewController: InputViewController.instantiate(
+                    saveText: { [weak self] in
+                        self?.items.append(
+                            Item(name: $0, isChecked: false)
+                        )
+                        self?.itemTableView.reloadData()
+                    }
+                )
+            ),
+            animated: true
+        )
     }
 }
 

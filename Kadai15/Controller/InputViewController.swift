@@ -11,7 +11,24 @@ class InputViewController: UIViewController {
 
     @IBOutlet private weak var nameTextField: UITextField!
 
-    var saveText: (String) -> Void = { _ in }
+    private let saveText: (String) -> Void
+
+    static func instantiate(saveText: @escaping (String) -> Void) -> InputViewController {
+
+        UIStoryboard(name: "Input", bundle: nil)
+            .instantiateInitialViewController(creator: { coder in
+                InputViewController(coder: coder, saveText: saveText)
+            })!
+    }
+
+    init?(coder: NSCoder, saveText: @escaping (String) -> Void) {
+        self.saveText = saveText
+        super.init(coder: coder)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
