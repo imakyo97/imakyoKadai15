@@ -28,26 +28,17 @@
                     <navigationItem key="navigationItem" id="R8A-pv-NHg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="5qf-hl-3dS">
                             <connections>
-                                <action selector="tappedAdd:" destination="BYZ-38-t0r" id="NHO-lt-ERI"/>
+                                <action selector="tappedAdd:" destination="BYZ-38-t0r" id="e2Q-OC-xrm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="itemTableView" destination="A7F-JO-ZKn" id="X9Q-Ko-dA2"/>
-                        <segue destination="q5t-ku-Uip" kind="presentation" identifier="Add" modalPresentationStyle="fullScreen" id="3n5-N5-ex4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="992.75362318840587" y="90.401785714285708"/>
-        </scene>
-        <!--Input-->
-        <scene sceneID="EvG-cp-EWp">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Input" id="q5t-ku-Uip" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TAk-0k-qP1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1639" y="102"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I51-xy-7Oy">
