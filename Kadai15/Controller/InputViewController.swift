@@ -11,7 +11,28 @@ class InputViewController: UIViewController {
 
     @IBOutlet private weak var nameTextField: UITextField!
 
-    var saveText: (String) -> Void = { _ in }
+//    var saveText: (String) -> Void = { _ in }
+    // .instantiateInitialViewController(creator:) を使ったことで、letにできている
+    private let saveText: (String) -> Void
+
+    // インスタンス化メソッドを作って、そこでクロージャーに値を渡すようにする
+    static func instantiate(saveText: @escaping (String) -> Void) -> InputViewController {
+
+        UIStoryboard(name: "Input", bundle: nil)
+            .instantiateInitialViewController(creator: { coder in
+                InputViewController(coder: coder, saveText: saveText)
+            })!
+    }
+
+    init?(coder: NSCoder, saveText: @escaping (String) -> Void) {
+        self.saveText = saveText
+        super.init(coder: coder)
+    }
+
+    // 失敗可能イニシャライザを記述すると、警告がでて追加される
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
